@@ -13,7 +13,7 @@ public class worker_backEnd {
     int i ;
     int k = 0;
     static String org_path;
-    File creation = new File("C:\\Users\\SreeraG\\Documents\\NetBeansProjects\\ForCodeReading\\filePG\\createdCode");
+    File creation = new File("C:\\Users\\SreeraG\\Documents\\NetBeansProjects\\ForCodeReading\\created");   //this is used to create from inside the code...
 public worker_backEnd(File[] root, int i) {
         this.root = root;
         this.i = i;
@@ -37,32 +37,44 @@ public static String convert_path(String op)       //this is used to convert the
                path = path + a;
        }
    }
-    System.out.println(path);
+   // System.out.println(path);
     return path;
 }
 
-public void create_tree(File [] f){
-   // System.out.println("Inside...");
-    System.out.print(f.toString().length() + "\n");
-    System.out.print(creation.toString().length() + "\n");
+public void create_tree(File [] f) throws IOException{
+    String breaker;
+    String ko;
+    String o;
     for(File k : f){
     if(k.isDirectory()){
-        String o = k.toString();
-        System.out.println("size of o : " +o.length()+ "and content is :" + o +"\n");
-        o = o.substring((int) creation.toString().length(),o.length());
-        System.out.println( o + " is a directory.\n");
+        
+        o = k.toString();
+        ko = org_path.toString();
+        breaker = o.substring(ko.length(), o.length());
+        clone_dir(creation,breaker,0);
         create_tree(k.listFiles());
     }
     else{
+        o = k.toString();
+        ko = org_path.toString();
+        breaker = o.substring(ko.length(), o.length());
         System.out.println(k.getName() + " is a file\n");
+        clone_dir(creation,breaker,1);
     }
     
 }
 }
 
-public void clone_dir(File [] root,String dir_or_file){
-    
-    String s= creation + "";
+public void clone_dir(File destn,String dir_or_file,int flag) throws IOException{ // used to create a clone
+    // of the working directory into another location
+    if(flag == 0){      //flag is 0 if it is directory...
+        File f = new File(destn + dir_or_file);
+        f.mkdir();
+    }
+    else{
+        File f = new File(destn + dir_or_file);
+        f.createNewFile(); 
+    }
     
 }
 }
