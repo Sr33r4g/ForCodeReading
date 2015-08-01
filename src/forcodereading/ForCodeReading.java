@@ -20,10 +20,6 @@ public class ForCodeReading {
         ui_frontEnd g = new ui_frontEnd(); 
         g.setVisible(true);
         worker_backEnd w = new worker_backEnd();
-    //    w.create_tree(w.root);
-       // File [] root = new File("C:\\Users\\SreeraG\\Documents\\NetBeansProjects\\ForCodeReading").listFiles();
-     //   thisisaPLAYGROUND t = new thisisaPLAYGROUND();
-     //   t.pgtest();
     }
     
 }
